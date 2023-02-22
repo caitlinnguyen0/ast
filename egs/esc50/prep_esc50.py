@@ -37,34 +37,34 @@ def get_immediate_files(a_dir):
 
 # downlooad esc50
 # dataset provided in https://github.com/karolpiczak/ESC-50
-if os.path.exists('ast/egs/esc50/data/ESC-50-master') == False:
+if os.path.exists('./data/ESC-50-master') == False:
     esc50_url = 'https://github.com/karoldvl/ESC-50/archive/master.zip'
-    wget.download(esc50_url, out='ast/egs/esc50/data')
-    with zipfile.ZipFile('ast/egs/esc50/data/ESC-50-master.zip', 'r') as zip_ref:
+    wget.download(esc50_url, out='./data/')
+    with zipfile.ZipFile('./data/ESC-50-master.zip', 'r') as zip_ref:
         zip_ref.extractall('./data/')
-    os.remove('ast/egs/esc50/data/ESC-50-master.zip')
+    os.remove('./data/ESC-50-master.zip')
 
     # convert the audio to 16kHz
-    base_dir = 'ast/egs/esc50/data/ESC-50-master/'
-    os.mkdir('ast/egs/esc50/data/ESC-50-master/audio_16k/')
-    audio_list = get_immediate_files('ast/egs/esc50/data/ESC-50-master/audio')
+    base_dir = './data/ESC-50-master/'
+    os.mkdir('./data/ESC-50-master/audio_16k/')
+    audio_list = get_immediate_files('./data/ESC-50-master/audio')
     for audio in audio_list:
         print('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
         os.system('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
 
-label_set = np.loadtxt('ast/egs/esc50/data/esc_class_labels_indices.csv', delimiter=',', dtype='str')
+label_set = np.loadtxt('./data/esc_class_labels_indices.csv', delimiter=',', dtype='str')
 label_map = {}
 for i in range(1, len(label_set)):
     label_map[eval(label_set[i][2])] = label_set[i][0]
 print(label_map)
 
 # fix bug: generate an empty directory to save json files
-if os.path.exists('ast/egs/esc50/data/datafiles') == False:
-    os.mkdir('ast/egs/esc50/data/datafiles')
+if os.path.exists('./data/datafiles') == False:
+    os.mkdir('./data/datafiles')
 
 for fold in [1,2,3,4,5]:
-    base_path = "ast/egs/esc50/data/ESC-50-master/audio_16k/"
-    meta = np.loadtxt('ast/egs/esc50/data/ESC-50-master/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
+    base_path = "./data/ESC-50-master/audio_16k/"
+    meta = np.loadtxt('./data/ESC-50-master/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
     train_wav_list = []
     eval_wav_list = []
     for i in range(0, len(meta)):
@@ -80,10 +80,10 @@ for fold in [1,2,3,4,5]:
 
     print('fold {:d}: {:d} training samples, {:d} test samples'.format(fold, len(train_wav_list), len(eval_wav_list)))
 
-    with open('ast/egs/esc50/data/datafiles/esc_train_data_'+ str(fold) +'.json', 'w') as f:
+    with open('./data/datafiles/esc_train_data_'+ str(fold) +'.json', 'w') as f:
         json.dump({'data': train_wav_list}, f, indent=1)
 
-    with open('ast/egs/esc50/data/datafiles/esc_eval_data_'+ str(fold) +'.json', 'w') as f:
+    with open('./data/datafiles/esc_eval_data_'+ str(fold) +'.json', 'w') as f:
         json.dump({'data': eval_wav_list}, f, indent=1)
 
 print('Finished ESC-50 Preparation')
