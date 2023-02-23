@@ -4,7 +4,6 @@
 # @Affiliation  : Massachusetts Institute of Technology
 # @Email   : yuangong@mit.edu
 # @File    : prep_esc50.py
-# Hello World from Jeremy's computer
 
 import numpy as np
 import json
