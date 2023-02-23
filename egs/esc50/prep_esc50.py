@@ -44,6 +44,9 @@ if os.path.exists('./data/ESC-50-main') == False:
     with zipfile.ZipFile('./data/ESC-50-main.zip', 'r') as zip_ref:
         zip_ref.extractall('./data/')
     os.remove('./data/ESC-50-main.zip')
+    
+    print(os.path.exists('./data/ESC-50-main')
+    print(os.path.exists('./data/ESC-50-main/ESC-50-main')
 
     # convert the audio to 16kHz
     base_dir = './data/ESC-50-main/'
