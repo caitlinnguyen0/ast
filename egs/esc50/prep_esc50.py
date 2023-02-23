@@ -57,10 +57,10 @@ label_map = {}
 for i in range(1, len(label_set)):
     label_map[eval(label_set[i][2])] = label_set[i][0]
 print(label_map)
-print(label_map)
 
 # fix bug: generate an empty directory to save json files
 if os.path.exists('./data/datafiles') == False:
+    os.mkdir('./data/datafiles')
     os.mkdir('./data/datafiles')
 
 #for fold in [1,2,3,4,5]:
