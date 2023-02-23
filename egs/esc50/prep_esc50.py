@@ -60,8 +60,9 @@ print(label_map)
 
 # fix bug: generate an empty directory to save json files
 if os.path.exists('./data/datafiles') == False:
+    print('hi')
     os.mkdir('./data/datafiles')
-    os.mkdir('./data/datafiles')
+    print('hi')
 
 #for fold in [1,2,3,4,5]:
 for fold in [1]:
