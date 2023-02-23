@@ -60,9 +60,7 @@ print(label_map)
 
 # fix bug: generate an empty directory to save json files
 if os.path.exists('./data/datafiles') == False:
-    print('hi')
     os.mkdir('./data/datafiles')
-    print('hi')
 
 #for fold in [1,2,3,4,5]:
 for fold in [1]:
@@ -78,6 +76,7 @@ for fold in [1]:
         cur_dict = {"wav": base_path + cur_path, "labels": '/m/07rwj'+cur_label.zfill(2)}
         if cur_fold == fold:
             eval_wav_list.append(cur_dict)
+            print(len(eval_wav_list))
         else:
             train_wav_list.append(cur_dict)
 
