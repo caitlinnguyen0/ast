@@ -37,17 +37,17 @@ def get_immediate_files(a_dir):
 
 # downlooad esc50
 # dataset WWAS ORIGINALLY provided in https://github.com/karolpiczak/ESC-50, now provided in https://github.com/caitlinnguyen0/ESC-50
-if os.path.exists('./data/ESC-50-master') == False:
-    esc50_url = 'https://github.com/karolpiczak/ESC-50/archive/master.zip'
+if os.path.exists('./data/ESC-50-main') == False:
+    esc50_url = 'https://github.com/caitlinnguyen0/ESC-50/archive/master.zip'
     wget.download(esc50_url, out='./data/')
-    with zipfile.ZipFile('./data/ESC-50-master.zip', 'r') as zip_ref:
+    with zipfile.ZipFile('./data/ESC-50-main.zip', 'r') as zip_ref:
         zip_ref.extractall('./data/')
-    os.remove('./data/ESC-50-master.zip')
+    os.remove('./data/ESC-50-main.zip')
 
     # convert the audio to 16kHz
-    base_dir = './data/ESC-50-master/'
-    os.mkdir('./data/ESC-50-master/audio_16k/')
-    audio_list = get_immediate_files('./data/ESC-50-master/audio')
+    base_dir = './data/ESC-50-main/'
+    os.mkdir('./data/ESC-50-main/audio_16k/')
+    audio_list = get_immediate_files('./data/ESC-50-main/audio')
     for audio in audio_list:
         print('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
         os.system('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
@@ -63,8 +63,8 @@ if os.path.exists('./data/datafiles') == False:
     os.mkdir('./data/datafiles')
 
 for fold in [1,2,3,4,5]:
-    base_path = "./data/ESC-50-master/audio_16k/"
-    meta = np.loadtxt('./data/ESC-50-master/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
+    base_path = "./data/ESC-50-main/audio_16k/"
+    meta = np.loadtxt('./data/ESC-50-main/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
     train_wav_list = []
     eval_wav_list = []
     for i in range(0, len(meta)):
