@@ -57,6 +57,7 @@ label_map = {}
 for i in range(1, len(label_set)):
     label_map[eval(label_set[i][2])] = label_set[i][0]
 print(label_map)
+print(label_map_
 
 # fix bug: generate an empty directory to save json files
 if os.path.exists('./data/datafiles') == False:
@@ -67,9 +68,7 @@ for fold in [1]:
     base_path = "./data/ESC-50-main/audio_16k/"
     meta = np.loadtxt('./data/ESC-50-main/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
     train_wav_list = []
-    print(train_wav_list)
     eval_wav_list = []
-    print(eval_wav_list)
     for i in range(0, len(meta)):
         cur_label = label_map[meta[i][3]]
         cur_path = meta[i][0]
