@@ -36,6 +36,15 @@ def get_immediate_subdirectories(a_dir):
 def get_immediate_files(a_dir):
     return [name for name in os.listdir(a_dir) if os.path.isfile(os.path.join(a_dir, name))]
 
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
+
 # downlooad esc50
 # dataset WWAS ORIGINALLY provided in https://github.com/karolpiczak/ESC-50, now provided in https://github.com/caitlinnguyen0/ESC-50
 if os.path.exists('./data/ESC-50-main') == False:
@@ -93,5 +102,7 @@ for fold in [1]:
 
     with open('./data/datafiles/esc_eval_data_'+ str(fold) +'.json', 'w') as f:
         json.dump({'data': eval_wav_list}, f, indent=1)
+
+list_files('./')
 
 print('Finished ESC-50 Preparation')
