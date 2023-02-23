@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     acc_fold = []
     print('--------------Result Summary--------------')
-    for fold in range(1, 6):
+    for fold in range(1, 2):
         result = np.loadtxt(args.exp_path+'/fold' + str(fold) + '/result.csv', delimiter=',')
         # note this is the best epoch based on AVERAGED accuracy across 5 folds, not the best epoch for each fold (which leads to over-optimistic results), this gives more fair result.
         acc_fold.append(result[best_epoch, 0])
