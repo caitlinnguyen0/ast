@@ -49,6 +49,7 @@ if os.path.exists('./data/ESC-50-master') == False:
     os.mkdir('./data/ESC-50-master/audio_16k/')
     audio_list_b4 = get_immediate_files('./data/ESC-50-master/audio')
     audio_list = []
+    print(len(audio_list_b4)/2)
     for j in range(1, len(audio_list_b4)/2):
         audio_list.append(audio_list_b4[j])
     for audio in audio_list:
