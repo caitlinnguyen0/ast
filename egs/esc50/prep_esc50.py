@@ -81,17 +81,18 @@ if os.path.exists('./data/datafiles') == False:
 #for fold in [1,2,3,4,5]:
 for fold in [1]:
     base_path = "./data/ESC-50-main/audio_16k/"
-    moo = np.loadtxt('./data/ESC-50-main/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
+    meta = np.loadtxt('./data/ESC-50-main/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
     # print(os.path.exists('./data/ESC-50-main/meta/esc50.csv'))
     train_wav_list = []
     eval_wav_list = []
-    for i in range(0, len(moo)):
-        cur_label = label_map[moo[i][3]]
-        cur_path = moo[i][0]
-        cur_fold = int(moo[i][1])
+    for i in range(0, len(meta)):
+        cur_label = label_map[meat[i][3]]
+        cur_path = meta[i][0]
+        cur_fold = int(meta[i][1])
         # /m/07rwj is just a dummy prefix
         cur_dict = {"wav": base_path + cur_path, "labels": '/m/07rwj'+cur_label.zfill(2)}
-        if cur_fold == fold:
+        #if cur_fold == fold:
+        if i == (len(meta) - 1)
             eval_wav_list.append(cur_dict)
             # print(len(eval_wav_list))
         else:
