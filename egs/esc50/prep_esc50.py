@@ -92,7 +92,7 @@ for fold in [1]:
         # /m/07rwj is just a dummy prefix
         cur_dict = {"wav": base_path + cur_path, "labels": '/m/07rwj'+cur_label.zfill(2)}
         #if cur_fold == fold:
-        if ( (i == (len(meta) - 1)) or (i == 1) or (i == 3) ):
+        if ( (i == (len(meta) - 1)) or (i == 1) or (i == 3) or (i == 12)):
             eval_wav_list.append(cur_dict)
             # print(len(eval_wav_list))
         else:
