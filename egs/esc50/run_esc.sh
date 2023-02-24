@@ -47,7 +47,8 @@ lrscheduler_decay=0.85
 
 base_exp_dir=./exp/test-${dataset}-f$fstride-t$tstride-imp$imagenetpretrain-asp$audiosetpretrain-b$batch_size-lr${lr}
 
-python ./prep_esc50.py
+# python ./prep_esc50.py
+python ./prep.py
 
 if [ -d $base_exp_dir ]; then
   echo 'exp exist'
