@@ -87,7 +87,7 @@ for fold in [1]:
     train_wav_list = []
     eval_wav_list = []
     for i in range(0, len(meta)):
-        cur_label = label_map[meat[i][3]]
+        cur_label = label_map[meta[i][3]]
         cur_path = meta[i][0]
         cur_fold = int(meta[i][1])
         # /m/07rwj is just a dummy prefix
