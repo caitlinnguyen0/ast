@@ -47,15 +47,10 @@ if os.path.exists('./data/ESC-50-master') == False:
     # convert the audio to 16kHz
     base_dir = './data/ESC-50-master/'
     os.mkdir('./data/ESC-50-master/audio_16k/')
-    audio_list_b4 = get_immediate_files('./data/ESC-50-master/audio')
-    audio_list = []
-    print(len(audio_list_b4)/2)
-    for j in range(1, len(audio_list_b4)/2):
-        audio_list.append(audio_list_b4[j])
+    audio_list = get_immediate_files('./data/ESC-50-master/audio')
     for audio in audio_list:
         print('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
         os.system('sox ' + base_dir + '/audio/' + audio + ' -r 16000 ' + base_dir + '/audio_16k/' + audio)
-        
 
 label_set = np.loadtxt('./data/esc_class_labels_indices.csv', delimiter=',', dtype='str')
 label_map = {}
@@ -72,8 +67,7 @@ for fold in [1]:
     meta = np.loadtxt('./data/ESC-50-master/meta/esc50.csv', delimiter=',', dtype='str', skiprows=1)
     train_wav_list = []
     eval_wav_list = []
-    print(len(meta)/2)
-    for i in range(0, len(meta)/2):
+    for i in range(0, len(meta)):
         cur_label = label_map[meta[i][3]]
         cur_path = meta[i][0]
         cur_fold = int(meta[i][1])
